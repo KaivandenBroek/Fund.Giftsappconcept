@@ -11,4 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="login_with_twitch">Login with Twitch!</string>
     <string name="fund_gifts">Fund Gifts</string>
+    <string name="title_funds">Funds</string>
+    <string name="title_home">Home</string>
+    <string name="title_friends">Friends</string>
 </resources>
