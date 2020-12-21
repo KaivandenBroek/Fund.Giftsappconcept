@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.fundgiftsappconcept.R
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -16,7 +16,7 @@ class DashboardFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        //val textView: TextView = root.findViewById(R.id.text_dashboard)
         return root
     }
 }
