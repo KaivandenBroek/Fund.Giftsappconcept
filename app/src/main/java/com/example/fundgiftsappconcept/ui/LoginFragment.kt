@@ -28,6 +28,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         view.findViewById<Button>(R.id.btnLogin).setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
+            // twitch API call to backend
+
         }
     }
 }
