@@ -54,6 +54,9 @@ dependencies {
     // Material.io
     implementation 'com.google.android.material:material:1.2.1'
 
+    // CircularProgressBar
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
+
     def lifecycle_version = "2.2.0"
 
     // Retrofit
