@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class UserViewmodel(application: Application) : AndroidViewModel(application) {
 
     private val userRepo = UserRepository()
-    val user = userRepo.getUser()
+    //val user = userRepo.getUser()
 
     fun setUser() {
         viewModelScope.launch {
