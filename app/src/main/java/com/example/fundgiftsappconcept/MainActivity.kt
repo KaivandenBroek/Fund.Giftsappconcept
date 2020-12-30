@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isInvisible
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
@@ -13,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -39,8 +42,11 @@ class MainActivity : AppCompatActivity() {
         //hide the bottom navigation on the login screen
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
             if (nd.id == R.id.loginFragment) {
+                toolbar.isInvisible = true
                 nav_view.visibility = View.GONE
             } else {
+                toolbar.isInvisible = false
+                toolbar.title = "Username HERE!"
                 nav_view.visibility = View.VISIBLE
             }
         }

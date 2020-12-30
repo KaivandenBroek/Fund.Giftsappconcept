@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.fundgiftsappconcept.R
 
@@ -14,8 +15,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_friends, container, false)
-        //val textView: TextView = root.findViewById(R.id.text_notifications)
-        return root
+        return inflater.inflate(R.layout.fragment_friends, container, false)
     }
 }

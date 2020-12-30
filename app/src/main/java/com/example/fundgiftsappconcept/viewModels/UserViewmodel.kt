@@ -16,4 +16,8 @@ class UserViewmodel(application: Application) : AndroidViewModel(application) {
             userRepo.getUser()
         }
     }
+
+    fun setUserTitle() {
+        
+    }
 }

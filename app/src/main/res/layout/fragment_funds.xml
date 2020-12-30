@@ -38,6 +38,7 @@
             app:cpb_round_border="false" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFunds"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

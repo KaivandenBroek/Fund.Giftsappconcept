@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.fundgiftsappconcept.R
 import com.example.fundgiftsappconcept.dialogs.NewFundDialog
 import kotlinx.android.synthetic.main.fragment_home.*
+
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -23,7 +25,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         btn_new_fund.setOnClickListener {
             val dialog = NewFundDialog()
-            dialog.show(parentFragmentManager,"")
+            dialog.show(parentFragmentManager, "")
         }
     }
 

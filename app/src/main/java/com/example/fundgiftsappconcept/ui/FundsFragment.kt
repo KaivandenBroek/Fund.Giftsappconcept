@@ -5,12 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.fundgiftsappconcept.R
+import com.example.fundgiftsappconcept.adapters.FundAdapter
 import com.example.fundgiftsappconcept.dialogs.FundDialog
+import com.example.fundgiftsappconcept.model.Fund
 import kotlinx.android.synthetic.main.fragment_funds.*
 
 class FundsFragment : Fragment(R.layout.fragment_funds) {
+
+    private var funds = arrayListOf<Fund>()
+    private lateinit var fundAdapter: FundAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -35,5 +42,30 @@ class FundsFragment : Fragment(R.layout.fragment_funds) {
             val dialog = FundDialog()
             dialog.show(parentFragmentManager,"")
         }
+        initViews()
+    }
+
+    private fun initViews() {
+        fundAdapter = FundAdapter(funds, ::toFund)
+        rvFunds.layoutManager
+        rvFunds.adapter = fundAdapter
+        observeFunds()
+    }
+
+    private fun observeFunds() {
+//        viewmodel.list.observe(viewLifecycleOwner, { response ->
+//            funds.clear()
+//            funds.addAll(response.results)
+//            fundAdapter.notifyDataSetChanged()
+//        })
+//        // Observe the error message.
+//        viewModel.errorText.observe(viewLifecycleOwner, {
+//            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+//        })
+    }
+
+    private fun toFund(fund: Fund) {
+        val dialog = FundDialog()
+        dialog.show(parentFragmentManager,"")
     }
 }

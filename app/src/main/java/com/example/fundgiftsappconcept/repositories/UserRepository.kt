@@ -1,5 +1,6 @@
 package com.example.fundgiftsappconcept.repositories
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.fundgiftsappconcept.ApiBuilder
 import com.example.fundgiftsappconcept.LoginService
@@ -15,6 +16,7 @@ class UserRepository {
     suspend fun getUser() {
         try {
             val result = loginService.login()
+            Log.v("RESULT: ", result.toString())
             //loginData.value = result
 
         } catch (error: Throwable) {
