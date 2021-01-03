@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiBuilder {
     private const val URL = "http://10.0.2.2:5000"
 
-    fun createApi(): LoginService{
+    fun createApi(): FundService{
         // Create an OkHttpClient to be able to make a log of the network traffic
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -30,6 +30,6 @@ object ApiBuilder {
             .build()
 
         // Return the Retrofit TriviaApiService
-        return twitchApi.create(LoginService::class.java)
+        return twitchApi.create(FundService::class.java)
     }
 }

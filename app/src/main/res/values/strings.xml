@@ -21,4 +21,6 @@
     <string name="title_new_fund">New Fund</string>
     <string name="title_fund">Fund</string>
     <string name="fund">Fund test</string>
+    <string name="app_name2">authpage</string>
+    <string name="login_2">Dont login with twitch</string>
 </resources>

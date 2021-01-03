@@ -35,5 +35,10 @@
         android:name="com.example.fundgiftsappconcept.ui.FriendsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_friends" />
+    <activity
+        android:id="@+id/authFragment"
+        android:name="com.example.fundgiftsappconcept.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" />
 
 </navigation>
