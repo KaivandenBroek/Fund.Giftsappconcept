@@ -1,25 +1,22 @@
 package com.example.fundgiftsappconcept.repositories
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.fundgiftsappconcept.ApiBuilder
 import com.example.fundgiftsappconcept.FundService
 import com.example.fundgiftsappconcept.model.Fund
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class FundRepository {
     private val api: FundService = ApiBuilder.createApi()
-    private val _funds: MutableLiveData<List<Fund>> = MutableLiveData()
-
-    /**
-     * Expose non MutableLiveData via getter
-     * Encapsulation :)
-     */
-    val funds: LiveData<List<Fund>>
-        get() = _funds
+    val funds: MutableLiveData<List<Fund>> = MutableLiveData()
 
     suspend fun getAllFunds() {
         try {
-            _funds.value = api.getAllFunds()
+            funds.value = api.getAllFunds()
+            Log.v("RESPONSE1: ", funds.value.toString())
         } catch (error: Throwable) {
             throw RefreshError("Unable to refresh funds", error)
         }
@@ -35,22 +32,17 @@ class FundRepository {
 
     }
 
-    suspend fun insertFund() {
+    // also increases fund if Fund object has same name
+    suspend fun insertFund(fund: Fund) {
         try {
-            api.insertFund()
+            Log.v("BODY", fund.toString())
+            api.insertFund(fund)
         } catch (error: Throwable) {
             throw RefreshError("Unable to insert fund", error)
         }
 
     }
-    suspend fun increaseFund(id: String, newAmount: Double) {
-        try {
-            api.increaseFund(id, newAmount)
-        } catch (error: Throwable) {
-            throw RefreshError("Unable to insert fund", error)
-        }
 
-    }
     suspend fun deleteFund(id: String) {
         try {
             api.deleteFund(id)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:layout_gravity="center"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp"
@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="end"
         android:orientation="horizontal">
 
         <TextView
@@ -21,12 +22,17 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:textSize="30sp" />
 
         <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/circularProgressBar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
             card_view:cpb_background_progressbar_color="#b6bbd8"
             card_view:cpb_background_progressbar_width="5dp"
             card_view:cpb_progress_direction="to_right"

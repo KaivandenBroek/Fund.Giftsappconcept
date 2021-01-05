@@ -40,5 +40,10 @@
         android:name="com.example.fundgiftsappconcept.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/codedLoginFragment"
+        android:name="com.example.fundgiftsappconcept.ui.CodedLoginFragment"
+        android:label="fragment_coded_login"
+        tools:layout="@layout/fragment_coded_login" />
 
 </navigation>

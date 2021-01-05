@@ -49,7 +49,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
 
         btnSadLogin.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
+            findNavController().navigate(R.id.codedLoginFragment)
         }
 
         view.findViewById<Button>(R.id.btnLogin).setOnClickListener {

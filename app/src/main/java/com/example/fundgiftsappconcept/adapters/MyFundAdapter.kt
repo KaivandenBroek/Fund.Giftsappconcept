@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundgiftsappconcept.R
 import com.example.fundgiftsappconcept.model.Fund
-import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import kotlinx.android.synthetic.main.card_fund.view.*
 import kotlin.reflect.KFunction1
 
-class FundAdapter(var arrayList: ArrayList<Fund>, val context: Context, private val onClick: KFunction1<Fund, Unit>) :
-        RecyclerView.Adapter<FundAdapter.ViewHolder>() {
+class MyFundAdapter(var arrayList: ArrayList<Fund>, val context: Context, private val onClick: KFunction1<Fund, Unit>) :
+        RecyclerView.Adapter<MyFundAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(fund: Fund) {
             itemView.tvFundTitle.text = fund.fundName
@@ -35,7 +34,6 @@ class FundAdapter(var arrayList: ArrayList<Fund>, val context: Context, private 
                 backgroundProgressBarWidth = 8f // in DP
             }
         }
-
         // open fund dialog
         init {
             itemView.setOnClickListener {

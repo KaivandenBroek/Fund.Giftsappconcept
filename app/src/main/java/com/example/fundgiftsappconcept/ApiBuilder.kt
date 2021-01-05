@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiBuilder {
-    private const val URL = "http://10.0.2.2:5000"
+    private const val URL = "http://192.168.178.33:5000/mobile/" // 192.168.178.33
 
     fun createApi(): FundService{
         // Create an OkHttpClient to be able to make a log of the network traffic

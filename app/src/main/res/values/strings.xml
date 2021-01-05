@@ -23,4 +23,13 @@
     <string name="fund">Fund test</string>
     <string name="app_name2">authpage</string>
     <string name="login_2">Dont login with twitch</string>
+    <string name="cash_amount">Cash Amount</string>
+    <string name="login_3">Login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="funds_gathered">Funds Gathered</string>
+    <string name="delete">Delete Fund</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="undo">Undo</string>
+    <string name="successDelete">Deleted</string>
 </resources>

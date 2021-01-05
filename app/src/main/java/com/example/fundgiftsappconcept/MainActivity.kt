@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isInvisible
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
@@ -15,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val fundViewModel: FundViewmodel by viewModels() {defaultViewModelProviderFactory}
         navController = navHostFragment.findNavController()
 
         appBarConfiguration = AppBarConfiguration(
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         //hide the bottom navigation on the login screen
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.loginFragment) {
+            if (nd.id == R.id.loginFragment || nd.id == R.id.codedLoginFragment) {
                 toolbar.isInvisible = true
                 nav_view.visibility = View.GONE
             } else {

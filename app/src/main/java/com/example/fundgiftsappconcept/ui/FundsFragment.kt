@@ -1,22 +1,24 @@
 package com.example.fundgiftsappconcept.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fundgiftsappconcept.R
 import com.example.fundgiftsappconcept.adapters.FundAdapter
 import com.example.fundgiftsappconcept.dialogs.FundDialog
 import com.example.fundgiftsappconcept.model.Fund
+import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import kotlinx.android.synthetic.main.fragment_funds.*
 
 class FundsFragment : Fragment(R.layout.fragment_funds) {
 
     private var funds = arrayListOf<Fund>()
+    private val fundViewModel: FundViewmodel by viewModels() {defaultViewModelProviderFactory}
     private lateinit var fundAdapter: FundAdapter
 
     override fun onCreateView(
@@ -30,42 +32,27 @@ class FundsFragment : Fragment(R.layout.fragment_funds) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        circularProgressBar.apply {
-            progressMax = 100f
-            setProgressWithAnimation(50f, 1000)
-            progressBarWidth = 5f
-            backgroundProgressBarWidth = 7f
-            progressBarColor = Color.GREEN
-        }
-
-        btn_fund.setOnClickListener {
-            val dialog = FundDialog()
-            dialog.show(parentFragmentManager,"")
-        }
+        fundViewModel.getAllFunds()
         initViews()
     }
 
     private fun initViews() {
-        fundAdapter = FundAdapter(funds, ::toFund)
-        rvFunds.layoutManager
+        fundAdapter = FundAdapter(funds,  requireContext(), ::toFund)
+        rvFunds.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvFunds.adapter = fundAdapter
         observeFunds()
     }
 
     private fun observeFunds() {
-//        viewmodel.list.observe(viewLifecycleOwner, { response ->
-//            funds.clear()
-//            funds.addAll(response.results)
-//            fundAdapter.notifyDataSetChanged()
-//        })
-//        // Observe the error message.
-//        viewModel.errorText.observe(viewLifecycleOwner, {
-//            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
-//        })
+        fundViewModel.funds.observe(viewLifecycleOwner, { response ->
+            funds.clear()
+            funds.addAll(response)
+            fundAdapter.notifyDataSetChanged()
+        })
     }
 
     private fun toFund(fund: Fund) {
-        val dialog = FundDialog()
+        val dialog = FundDialog(fund)
         dialog.show(parentFragmentManager,"")
     }
 }
