@@ -9,14 +9,17 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.example.fundgiftsappconcept.R
+import com.example.fundgiftsappconcept.adapters.FundAdapter
 import com.example.fundgiftsappconcept.model.Fund
 import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import kotlinx.android.synthetic.main.dialog_fund.*
+import okhttp3.internal.notify
 
-class FundDialog(fund: Fund) : DialogFragment() {
+class FundDialog(fund: Fund, fundAdapter: FundAdapter) : DialogFragment() {
 
     private val fundViewModel: FundViewmodel by viewModels()
     private var fundData = fund
+    private val adapter = fundAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -28,10 +31,11 @@ class FundDialog(fund: Fund) : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        slider.valueTo = 80.0F
-        btnCancel.setOnClickListener {
-            dismiss()
-        }
+
+        // sets max fundable amount so noone can over-fund
+        slider.valueTo = (fundData.fullAmount-fundData.currentAmount).toFloat()
+
+        btnCancel.setOnClickListener { dismiss() }
 
         btnConfirm.setOnClickListener {
 
@@ -47,8 +51,12 @@ class FundDialog(fund: Fund) : DialogFragment() {
                     fullAmount = fundData.fullAmount,
                     currentAmount = fundData.currentAmount + amount
             )
+
             Log.v("FUND: ", updatedFund.toString())
             updateFund(updatedFund)
+            adapter.arrayList.remove(fundData)
+            adapter.arrayList.add(updatedFund)
+            adapter.notifyDataSetChanged()
             dismiss()
         }
     }

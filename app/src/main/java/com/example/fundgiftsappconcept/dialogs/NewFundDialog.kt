@@ -8,13 +8,15 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.example.fundgiftsappconcept.R
+import com.example.fundgiftsappconcept.adapters.MyFundAdapter
 import com.example.fundgiftsappconcept.model.Fund
 import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import kotlinx.android.synthetic.main.dialog_new_fund.*
 
-class NewFundDialog : DialogFragment() {
+class NewFundDialog(myFundAdapter: MyFundAdapter) : DialogFragment() {
 
     private val fundViewModel: FundViewmodel by viewModels()
+    private val myAdapter = myFundAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -35,6 +37,7 @@ class NewFundDialog : DialogFragment() {
             saveFund()
             val title = tfNewFundTitle.text
             Toast.makeText(context, "$title created!", Toast.LENGTH_LONG).show()
+
             dismiss()
         }
     }
@@ -50,5 +53,7 @@ class NewFundDialog : DialogFragment() {
             fullAmount = amount
                 )
         fundViewModel.insertFund(fund)
+        myAdapter.arrayList.add(fund)
+        myAdapter.notifyDataSetChanged()
     }
 }

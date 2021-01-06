@@ -17,18 +17,25 @@ class FundViewmodel(application: Application) : AndroidViewModel(application) {
     private val fundRepo = FundRepository()
     private val userRepo = UserRepository()
     val funds = fundRepo.funds
-    var currentUser: User? = null
+    val friends = userRepo.users
+    var currentUser = userRepo.currentUser
 
     fun getUserByUsername(name: String): User? {
-        viewModelScope.launch {
-            currentUser = userRepo.getUser(name)
+        CoroutineScope(Dispatchers.Main).launch {
+            currentUser.value =  userRepo.getUser(name)
         }
-        return currentUser
+        return currentUser.value
     }
+
+    fun insertUser(user: User) {
+        CoroutineScope(Dispatchers.Main).launch {
+            userRepo.createUser(user)
+        }
+    }
+
 
     fun insertFund(fund: Fund) {
         CoroutineScope(Dispatchers.Main).launch {
-            Log.v("Creating: ", fund.fundName)
             fundRepo.insertFund(fund)
         }
     }
@@ -43,6 +50,30 @@ class FundViewmodel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 fundRepo.getAllFunds()
+            } catch (error: FundRepository.RefreshError) {
+                Log.e("Trivia error", error.cause.toString())
+            }
+        }
+    }
+
+    fun getUserFunds() {
+        currentUser.value?.toString()?.let { Log.v("GET LOG", it) }
+        val userId = currentUser.value?.id
+        viewModelScope.launch {
+            try {
+                if (userId != null) {
+                    fundRepo.getUserFunds(userId)
+                }
+            } catch (error: FundRepository.RefreshError) {
+                Log.e("Trivia error", error.cause.toString())
+            }
+        }
+    }
+
+    fun getAllFriends() {
+        viewModelScope.launch {
+            try {
+                userRepo.getAllFriends()
             } catch (error: FundRepository.RefreshError) {
                 Log.e("Trivia error", error.cause.toString())
             }

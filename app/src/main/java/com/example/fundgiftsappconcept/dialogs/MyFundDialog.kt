@@ -2,6 +2,7 @@ package com.example.fundgiftsappconcept.dialogs
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +15,12 @@ import com.example.fundgiftsappconcept.model.Fund
 import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.dialog_my_fund.*
+import kotlin.math.round
 
 class MyFundDialog(fund: Fund, myFundAdapter: MyFundAdapter) : DialogFragment() {
 
     private val fundViewModel: FundViewmodel by viewModels()
-    private val coolbeans = myFundAdapter
+    private val myAdapter = myFundAdapter
     private val myFund = fund
 
     override fun onCreateView(
@@ -44,8 +46,8 @@ class MyFundDialog(fund: Fund, myFundAdapter: MyFundAdapter) : DialogFragment() 
 
             myFund.id?.let { id -> fundViewModel.deleteFund(id) }
             Toast.makeText(context, "$title deleted!", Toast.LENGTH_LONG).show()
-            coolbeans.arrayList.remove(myFund)
-            coolbeans.notifyDataSetChanged()
+            myAdapter.arrayList.remove(myFund)
+            myAdapter.notifyDataSetChanged()
 
             //TODO werkt niet
             Snackbar.make(requireView(), R.string.successDelete, Snackbar.LENGTH_LONG)
@@ -61,7 +63,7 @@ class MyFundDialog(fund: Fund, myFundAdapter: MyFundAdapter) : DialogFragment() 
     private fun setItems() {
 
         fund_title.text = myFund.fundName
-        tfFundsGathered.text = myFund.currentAmount.toString()
+        tfFundsGathered.text = String.format("Amount funded: %.2f", myFund.currentAmount.round(2))
         circularProgressBar.apply {
             val cash = myFund.currentAmount.toFloat()
             val max = myFund.fullAmount.toFloat()
@@ -79,6 +81,13 @@ class MyFundDialog(fund: Fund, myFundAdapter: MyFundAdapter) : DialogFragment() 
             progressBarWidth = 16f // in DP
             backgroundProgressBarWidth = 8f // in DP
         }
+    }
+
+    // more than 2 decimals seems a bit excessive, so i round it
+    fun Double.round(decimals: Int): Double {
+        var multiplier = 1.0
+        repeat(decimals) { multiplier *= 10 }
+        return round(this * multiplier) / multiplier
     }
 
 }

@@ -28,25 +28,36 @@ class CodedLoginFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnRegister.setOnClickListener {
+            findNavController().navigate(R.id.registerFragment)
+        }
+
         btnCodedLogin.setOnClickListener {
             if(tfCodedLoginUsername.text.isNullOrEmpty()){
                 Toast.makeText(context, "Username required!", Toast.LENGTH_LONG).show()
             } else {
-                findNavController().navigate(R.id.homeFragment)
-//                if (findAndSetUser(tfCodedLoginUsername.text.toString())) {
-//                    findNavController().navigate(R.id.homeFragment)
-//                } else {
-//                    val title = tfCodedLoginUsername.text.toString()
-//                    Toast.makeText(context, "$title is not a username!", Toast.LENGTH_LONG).show()
-//                }
+                auth()
             }
+        }
+    }
 
+    private fun auth() {
+        if (findAndSetUser(tfCodedLoginUsername.text.toString())) {
+            findNavController().navigate(R.id.homeFragment)
+        } else {
+            val title = tfCodedLoginUsername.text.toString()
+            Toast.makeText(context, "$title is not a username!", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun findAndSetUser(username: String): Boolean {
         val user = fundViewModel.getUserByUsername(username)
-        return user != null
+
+        return if (user != null) {
+            user.name == username
+        } else {
+            false
+        }
     }
 
 }

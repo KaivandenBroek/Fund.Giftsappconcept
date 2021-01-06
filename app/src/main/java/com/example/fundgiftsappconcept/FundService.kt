@@ -14,15 +14,21 @@ interface FundService {
     suspend fun login()
 
     //user stuff ///////////////////
-    @POST()
-    suspend fun createUser()
+    @POST("newUser")
+    suspend fun createUser(@Body user: User)
 
-    @POST("userByUsername")
-    suspend fun getUser(@Body username: String): User
+    @GET("allUsers")
+    suspend fun getAllUsers() : List<User>
+
+    @GET("userByUsername/{username}")
+    suspend fun getUser(@Path("username") username: String): User
 
     //fund stuff ///////////////////
     @GET("allFunds")
     suspend fun getAllFunds() : List<Fund>
+
+    @GET("fundsByUserId/{id}")
+    suspend fun getFundsPerUser(@Path("id") id: String) : List<Fund>
 
     @GET("funds/{id}")
     suspend fun getFund(@Path("id") id: String): Fund
@@ -33,7 +39,4 @@ interface FundService {
 
     @DELETE("deleteFund/{id}")
     suspend fun deleteFund(@Path(value = "id") id: String)
-
-    @Update()
-    suspend fun increaseFund(@Path("Id") id: String, newAmount: Double) : Fund
 }

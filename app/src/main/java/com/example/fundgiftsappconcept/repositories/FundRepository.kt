@@ -12,11 +12,20 @@ import kotlinx.coroutines.withContext
 class FundRepository {
     private val api: FundService = ApiBuilder.createApi()
     val funds: MutableLiveData<List<Fund>> = MutableLiveData()
+    val userFunds: MutableLiveData<List<Fund>> = MutableLiveData()
 
     suspend fun getAllFunds() {
         try {
             funds.value = api.getAllFunds()
-            Log.v("RESPONSE1: ", funds.value.toString())
+        } catch (error: Throwable) {
+            throw RefreshError("Unable to refresh funds", error)
+        }
+
+    }
+
+    suspend fun getUserFunds(Userid: String) {
+        try {
+            userFunds.value = api.getFundsPerUser(Userid)
         } catch (error: Throwable) {
             throw RefreshError("Unable to refresh funds", error)
         }
@@ -35,7 +44,6 @@ class FundRepository {
     // also increases fund if Fund object has same name
     suspend fun insertFund(fund: Fund) {
         try {
-            Log.v("BODY", fund.toString())
             api.insertFund(fund)
         } catch (error: Throwable) {
             throw RefreshError("Unable to insert fund", error)

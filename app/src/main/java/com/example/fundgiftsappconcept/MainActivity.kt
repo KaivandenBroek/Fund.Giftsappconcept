@@ -1,25 +1,23 @@
 package com.example.fundgiftsappconcept
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,11 +30,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val fundViewModel: FundViewmodel by viewModels() {defaultViewModelProviderFactory}
+        val fundViewModel: FundViewmodel by viewModels() { defaultViewModelProviderFactory }
         navController = navHostFragment.findNavController()
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.friendsFragment, R.id.fundsFragment)
+                setOf(R.id.homeFragment, R.id.friendsFragment, R.id.fundsFragment)
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 nav_view.visibility = View.GONE
             } else {
                 toolbar.isInvisible = false
-                toolbar.title = "Username HERE!"
+                toolbar.title = fundViewModel.currentUser.value?.name.toString()
                 nav_view.visibility = View.VISIBLE
             }
         }
@@ -63,9 +61,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // toggle nav drawer on selecting action bar app icon/title
         return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+            R.id.logout -> {
+                navController.navigate(R.id.loginFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

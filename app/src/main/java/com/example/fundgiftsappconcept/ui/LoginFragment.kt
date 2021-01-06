@@ -52,9 +52,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.codedLoginFragment)
         }
 
-        view.findViewById<Button>(R.id.btnLogin).setOnClickListener {
-            //userViewModel.setUser()
-
+        view.findViewById<Button>(R.id.btnCancel).setOnClickListener {
             try {
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
