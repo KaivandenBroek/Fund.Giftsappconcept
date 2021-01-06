@@ -1,4 +1,4 @@
-package com.example.fundgiftsappconcept
+package com.example.fundgiftsappconcept.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.fundgiftsappconcept.CurrentUser
+import com.example.fundgiftsappconcept.R
 import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -43,12 +45,13 @@ class MainActivity : AppCompatActivity() {
 
         //hide the bottom navigation on the login screen
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.loginFragment || nd.id == R.id.codedLoginFragment) {
+            if (nd.id == R.id.loginFragment || nd.id == R.id.codedLoginFragment || nd.id == R.id.registerFragment) {
                 toolbar.isInvisible = true
                 nav_view.visibility = View.GONE
             } else {
                 toolbar.isInvisible = false
-                toolbar.title = fundViewModel.currentUser.value?.name.toString()
+                //toolbar.title = fundViewModel.currentUser.value?.name.toString()
+                toolbar.title = CurrentUser.currentUser.name
                 nav_view.visibility = View.VISIBLE
             }
         }

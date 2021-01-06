@@ -1,4 +1,4 @@
-package com.example.fundgiftsappconcept
+package com.example.fundgiftsappconcept.ui
 
 import androidx.navigation.fragment.findNavController
 
@@ -8,8 +8,8 @@ import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.fundgiftsappconcept.R
 import kotlinx.android.synthetic.main.fragment_auth.*
 
 class AuthFragment : AppCompatActivity() {

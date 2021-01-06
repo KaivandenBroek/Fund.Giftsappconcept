@@ -1,4 +1,4 @@
-package com.example.fundgiftsappconcept
+package com.example.fundgiftsappconcept.api
 
 import androidx.room.Delete
 import androidx.room.Update

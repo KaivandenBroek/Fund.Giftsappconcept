@@ -1,6 +1,5 @@
-package com.example.fundgiftsappconcept
+package com.example.fundgiftsappconcept.api
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiBuilder {
     private const val URL = "http://192.168.178.33:5000/mobile/" // 192.168.178.33
 
-    fun createApi(): FundService{
+    fun createApi(): FundService {
         // Create an OkHttpClient to be able to make a log of the network traffic
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))

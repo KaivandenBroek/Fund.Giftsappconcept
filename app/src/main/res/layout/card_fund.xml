@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_gravity="center"
-    card_view:cardCornerRadius="4dp"
+    android:backgroundTint="#ABB2B9 "
+    card_view:cardCornerRadius="8dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true">
 
@@ -33,7 +34,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            card_view:cpb_background_progressbar_color="#b6bbd8"
+            card_view:cpb_background_progressbar_color="#0B5345 "
             card_view:cpb_background_progressbar_width="5dp"
             card_view:cpb_progress_direction="to_right"
             card_view:cpb_progressbar_color="#3f51b5"

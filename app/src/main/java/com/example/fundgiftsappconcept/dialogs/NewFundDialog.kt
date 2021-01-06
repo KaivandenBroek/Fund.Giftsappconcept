@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import com.example.fundgiftsappconcept.CurrentUser
 import com.example.fundgiftsappconcept.R
 import com.example.fundgiftsappconcept.adapters.MyFundAdapter
 import com.example.fundgiftsappconcept.model.Fund
@@ -48,7 +49,7 @@ class NewFundDialog(myFundAdapter: MyFundAdapter) : DialogFragment() {
         val fund = Fund(
             id = null,
             fundName = tfNewFundTitle.text.toString(),
-            creatorId = "5ff3441ad2bcbf6407b7f4e3",
+            creatorId = CurrentUser.currentUser.id.toString(),
             currentAmount = 0.0,
             fullAmount = amount
                 )

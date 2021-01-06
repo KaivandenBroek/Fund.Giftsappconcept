@@ -8,7 +8,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="login_with_twitch">Login with Twitch!</string>
+    <string name="login_with_twitch">Twitch login</string>
     <string name="fund_gifts">Fund Gifts</string>
     <string name="title_funds">Funds</string>
     <string name="title_home">Home</string>
@@ -21,7 +21,7 @@
     <string name="title_fund">Fund</string>
     <string name="fund">Fund test</string>
     <string name="app_name2">authpage</string>
-    <string name="login_2">Dont login with twitch</string>
+    <string name="login_2">Other login</string>
     <string name="cash_amount">Cash Amount</string>
     <string name="login_3">Login</string>
     <string name="register">Register</string>

@@ -1,13 +1,9 @@
 package com.example.fundgiftsappconcept.repositories
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.fundgiftsappconcept.ApiBuilder
-import com.example.fundgiftsappconcept.FundService
+import com.example.fundgiftsappconcept.api.ApiBuilder
+import com.example.fundgiftsappconcept.api.FundService
 import com.example.fundgiftsappconcept.model.Fund
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class FundRepository {
     private val api: FundService = ApiBuilder.createApi()

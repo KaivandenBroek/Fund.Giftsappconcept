@@ -56,6 +56,7 @@ class FundDialog(fund: Fund, fundAdapter: FundAdapter) : DialogFragment() {
             updateFund(updatedFund)
             adapter.arrayList.remove(fundData)
             adapter.arrayList.add(updatedFund)
+            adapter.arrayList.sortByDescending { fund -> (fund.currentAmount/fund.fullAmount) }
             adapter.notifyDataSetChanged()
             dismiss()
         }

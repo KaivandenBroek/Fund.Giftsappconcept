@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_friends" />
     <activity
         android:id="@+id/authFragment"
-        android:name="com.example.fundgiftsappconcept.AuthFragment"
+        android:name="com.example.fundgiftsappconcept.ui.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" />
     <fragment

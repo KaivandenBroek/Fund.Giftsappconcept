@@ -1,6 +1,7 @@
 package com.example.fundgiftsappconcept.ui
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -33,16 +34,22 @@ class CodedLoginFragment : Fragment(){
         }
 
         btnCodedLogin.setOnClickListener {
-            if(tfCodedLoginUsername.text.isNullOrEmpty()){
-                Toast.makeText(context, "Username required!", Toast.LENGTH_LONG).show()
-            } else {
-                auth()
+            when {
+                TextUtils.isEmpty(tfCodedLoginUsername.text.toString().trim {it <= ' '}) -> {
+                    Toast.makeText(
+                            activity?.baseContext,
+                        "Username required!",
+                            Toast.LENGTH_LONG
+                    ).show()
+                } else -> {
+                    auth()
+                }
             }
         }
     }
 
     private fun auth() {
-        if (findAndSetUser(tfCodedLoginUsername.text.toString())) {
+        if (findAndSetUser(tfCodedLoginUsername.text.toString().trim {it <= ' '})) {
             findNavController().navigate(R.id.homeFragment)
         } else {
             val title = tfCodedLoginUsername.text.toString()

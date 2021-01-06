@@ -47,7 +47,7 @@ class FundsFragment : Fragment(R.layout.fragment_funds) {
         fundViewModel.funds.observe(viewLifecycleOwner, { response ->
             funds.clear()
             funds.addAll(response)
-            funds.sortedByDescending { fund -> (fund.fullAmount/fund.currentAmount) }
+            funds.sortByDescending { fund -> (fund.currentAmount/fund.fullAmount) }
             fundAdapter.notifyDataSetChanged()
         })
     }

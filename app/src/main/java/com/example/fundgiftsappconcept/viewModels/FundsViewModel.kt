@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fundgiftsappconcept.CurrentUser
 import com.example.fundgiftsappconcept.model.Fund
 import com.example.fundgiftsappconcept.model.User
 import com.example.fundgiftsappconcept.repositories.FundRepository
@@ -17,14 +18,15 @@ class FundViewmodel(application: Application) : AndroidViewModel(application) {
     private val fundRepo = FundRepository()
     private val userRepo = UserRepository()
     val funds = fundRepo.funds
+    val myFunds = fundRepo.userFunds
     val friends = userRepo.users
-    var currentUser = userRepo.currentUser
+    var user = CurrentUser.currentUser
 
     fun getUserByUsername(name: String): User? {
         CoroutineScope(Dispatchers.Main).launch {
-            currentUser.value =  userRepo.getUser(name)
+            user = userRepo.getUser(name)
         }
-        return currentUser.value
+        return user
     }
 
     fun insertUser(user: User) {
@@ -57,8 +59,7 @@ class FundViewmodel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getUserFunds() {
-        currentUser.value?.toString()?.let { Log.v("GET LOG", it) }
-        val userId = currentUser.value?.id
+        val userId = user.id
         viewModelScope.launch {
             try {
                 if (userId != null) {

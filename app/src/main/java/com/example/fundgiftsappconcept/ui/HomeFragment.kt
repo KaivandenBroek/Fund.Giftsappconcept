@@ -1,7 +1,6 @@
 package com.example.fundgiftsappconcept.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.example.fundgiftsappconcept.dialogs.MyFundDialog
 import com.example.fundgiftsappconcept.dialogs.NewFundDialog
 import com.example.fundgiftsappconcept.model.Fund
 import com.example.fundgiftsappconcept.viewModels.FundViewmodel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -52,10 +50,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun observeFunds() {
-        fundViewModel.funds.observe(viewLifecycleOwner, { response ->
+        fundViewModel.myFunds.observe(viewLifecycleOwner, { response ->
             myFunds.clear()
             myFunds.addAll(response)
-            myFunds.sortByDescending { fund -> (fund.fullAmount/fund.currentAmount) }
+            myFunds.sortByDescending { fund -> (fund.currentAmount/fund.fullAmount) }
             myFundAdapter.notifyDataSetChanged()
         })
     }
