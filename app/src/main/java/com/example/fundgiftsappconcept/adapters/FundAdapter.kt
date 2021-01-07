@@ -28,7 +28,7 @@ class FundAdapter(var arrayList: ArrayList<Fund>, val context: Context, private 
 
                 // Set Color
                 progressBarColor = Color.GREEN
-                backgroundProgressBarColor = Color.parseColor("#0B5345")
+                backgroundProgressBarColor = Color.BLACK
 
                 // Set Width
                 progressBarWidth = 16f // in DP

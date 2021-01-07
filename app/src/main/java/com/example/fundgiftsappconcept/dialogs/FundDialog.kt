@@ -14,6 +14,8 @@ import com.example.fundgiftsappconcept.model.Fund
 import com.example.fundgiftsappconcept.viewModels.FundViewmodel
 import kotlinx.android.synthetic.main.dialog_fund.*
 import okhttp3.internal.notify
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class FundDialog(fund: Fund, fundAdapter: FundAdapter) : DialogFragment() {
 
@@ -33,7 +35,7 @@ class FundDialog(fund: Fund, fundAdapter: FundAdapter) : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // sets max fundable amount so noone can over-fund
-        slider.valueTo = (fundData.fullAmount-fundData.currentAmount).toFloat()
+        slider.valueTo = (fundData.fullAmount - fundData.currentAmount).toFloat()
 
         btnCancel.setOnClickListener { dismiss() }
 
@@ -41,9 +43,12 @@ class FundDialog(fund: Fund, fundAdapter: FundAdapter) : DialogFragment() {
 
             val title = fundData.fundName
             val amount = slider.value.toDouble()
-            Toast.makeText(context, "$amount funded to $title!", Toast.LENGTH_LONG).show()
+
+            //round amount
+            val rounded = String.format("%.2f", amount)
 
             // to update the fund i have to replace it
+            adapter.arrayList.remove(fundData)
             val updatedFund = Fund(
                     id = fundData.id,
                     fundName = fundData.fundName,
@@ -52,13 +57,22 @@ class FundDialog(fund: Fund, fundAdapter: FundAdapter) : DialogFragment() {
                     currentAmount = fundData.currentAmount + amount
             )
 
-            Log.v("FUND: ", updatedFund.toString())
-            updateFund(updatedFund)
-            adapter.arrayList.remove(fundData)
-            adapter.arrayList.add(updatedFund)
-            adapter.arrayList.sortByDescending { fund -> (fund.currentAmount/fund.fullAmount) }
-            adapter.notifyDataSetChanged()
-            dismiss()
+            if (updatedFund.currentAmount >= updatedFund.fullAmount) { // if fund is completed, remove from list
+
+                updatedFund.id?.let { it1 -> fundViewModel.deleteFund(it1) }
+                adapter.notifyDataSetChanged()
+
+                Toast.makeText(context, "${fundData.fundName} Completed!", Toast.LENGTH_LONG).show()
+                dismiss()
+            } else {
+                updateFund(updatedFund)
+                adapter.arrayList.add(updatedFund)
+                adapter.arrayList.sortByDescending { fund -> (fund.currentAmount / fund.fullAmount) }
+                adapter.notifyDataSetChanged()
+
+                Toast.makeText(context, "$rounded funded to $title!", Toast.LENGTH_LONG).show()
+                dismiss()
+            }
         }
     }
 

@@ -53,7 +53,7 @@ class FundViewmodel(application: Application) : AndroidViewModel(application) {
             try {
                 fundRepo.getAllFunds()
             } catch (error: FundRepository.RefreshError) {
-                Log.e("Trivia error", error.cause.toString())
+                Log.e("all funds error", error.cause.toString())
             }
         }
     }
@@ -66,7 +66,7 @@ class FundViewmodel(application: Application) : AndroidViewModel(application) {
                     fundRepo.getUserFunds(userId)
                 }
             } catch (error: FundRepository.RefreshError) {
-                Log.e("Trivia error", error.cause.toString())
+                Log.e("user funds error", error.cause.toString())
             }
         }
     }
@@ -76,7 +76,7 @@ class FundViewmodel(application: Application) : AndroidViewModel(application) {
             try {
                 userRepo.getAllFriends()
             } catch (error: FundRepository.RefreshError) {
-                Log.e("Trivia error", error.cause.toString())
+                Log.e("user list error", error.cause.toString())
             }
         }
     }
