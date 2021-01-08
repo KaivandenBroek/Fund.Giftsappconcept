@@ -24,7 +24,6 @@ object ApiBuilder {
         val twitchApi = Retrofit.Builder()
             .baseUrl(URL)
             .client(okHttpClient)
-            //.addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 

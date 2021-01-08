@@ -55,6 +55,7 @@ class FundRepository {
         }
 
     }
+
     class RefreshError(message: String, cause: Throwable) : Throwable(message, cause)
 }
 

@@ -36,4 +36,5 @@
     <string name="name">Username</string>
     <string name="age">Age</string>
     <string name="create">Create Account</string>
+    <string name="delete_account">Delete Account</string>
 </resources>

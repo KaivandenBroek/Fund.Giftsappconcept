@@ -70,7 +70,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onResume()
 
         val uri: Uri? = intent.data
-        Log.v("REDIRECT URL CODE: ", uri.toString())
+        //Log.v("REDIRECT URL CODE: ", uri.toString())
 
         if(uri != null && uri.toString().startsWith(redirectUrl)) {
             var code: String = uri.getQueryParameter("code").toString()

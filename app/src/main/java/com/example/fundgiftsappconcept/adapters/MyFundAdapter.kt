@@ -16,6 +16,9 @@ class MyFundAdapter(var arrayList: ArrayList<Fund>, val context: Context, privat
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(fund: Fund) {
             itemView.tvFundTitle.text = fund.fundName
+            val goal = String.format("%.2f", fund.fullAmount)
+            val stringGoal = "Goal: $goal"
+            itemView.tvFundGoal.text = stringGoal
             itemView.circularProgressBar.apply {
                 val cash = fund.currentAmount.toFloat()
                 val max = fund.fullAmount.toFloat()

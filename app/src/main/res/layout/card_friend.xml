@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="105dp"
     android:layout_gravity="center"
-    card_view:cardBackgroundColor="#ABB2B9 "
+    android:backgroundTint="#641E16 "
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true">
@@ -24,6 +24,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
+            android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
         <TextView
@@ -34,6 +35,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
+            android:textColor="#FFFFFF"
             android:textSize="30sp" />
     </LinearLayout>
 

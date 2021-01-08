@@ -1,9 +1,8 @@
 package com.example.fundgiftsappconcept.api
 
-import androidx.room.Delete
-import androidx.room.Update
 import com.example.fundgiftsappconcept.model.Fund
 import com.example.fundgiftsappconcept.model.User
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -21,7 +20,10 @@ interface FundService {
     suspend fun getAllUsers() : List<User>
 
     @GET("userByUsername/{username}")
-    suspend fun getUser(@Path("username") username: String): User
+    suspend fun getUser(@Path("username") username: String): Response<User>
+
+    @DELETE("deleteUser/{id}")
+    suspend fun deleteUser(@Path(value = "id") id: String)
 
     //fund stuff ///////////////////
     @GET("allFunds")

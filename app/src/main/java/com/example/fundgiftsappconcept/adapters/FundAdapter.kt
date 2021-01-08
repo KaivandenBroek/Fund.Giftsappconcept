@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundgiftsappconcept.R
 import com.example.fundgiftsappconcept.model.Fund
-import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import kotlinx.android.synthetic.main.card_fund.view.*
 import kotlin.reflect.KFunction1
 
@@ -17,6 +16,9 @@ class FundAdapter(var arrayList: ArrayList<Fund>, val context: Context, private 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(fund: Fund) {
             itemView.tvFundTitle.text = fund.fundName
+            val goal = String.format("%.2f", fund.fullAmount)
+            val stringGoal = "Goal: $goal"
+            itemView.tvFundGoal.text = stringGoal
             itemView.circularProgressBar.apply {
                 val cash = fund.currentAmount.toFloat()
                 val max = fund.fullAmount.toFloat()

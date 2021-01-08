@@ -12,15 +12,6 @@
         tools:layout="@layout/fragment_login" >
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.fundgiftsappconcept.ui.SecondFragment"
-        android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
-        <action
-            android:id="@+id/action_secondFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/fundsFragment"
         android:name="com.example.fundgiftsappconcept.ui.FundsFragment"
         android:label="fragment_dashboard"

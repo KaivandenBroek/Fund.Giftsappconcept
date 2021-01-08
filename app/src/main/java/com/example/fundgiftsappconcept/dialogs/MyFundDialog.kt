@@ -49,10 +49,10 @@ class MyFundDialog(fund: Fund, myFundAdapter: MyFundAdapter) : DialogFragment() 
             myAdapter.arrayList.remove(myFund)
             myAdapter.notifyDataSetChanged()
 
-            //TODO werkt niet
+            // werkt niet
             Snackbar.make(requireView(), R.string.successDelete, Snackbar.LENGTH_LONG)
                     .setAction(R.string.undo) { // undo delete
-                            fundViewModel.insertFund(tmp)
+                        fundViewModel.insertFund(tmp)
                     }
                     .show()
 

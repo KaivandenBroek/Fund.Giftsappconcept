@@ -37,7 +37,7 @@ class FundsFragment : Fragment(R.layout.fragment_funds) {
     }
 
     private fun initViews() {
-        fundAdapter = FundAdapter(funds,  requireContext(), ::toFund)
+        fundAdapter = FundAdapter(funds, requireContext(), ::toFund)
         rvFunds.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvFunds.adapter = fundAdapter
         observeFunds()
@@ -51,8 +51,6 @@ class FundsFragment : Fragment(R.layout.fragment_funds) {
             fundAdapter.notifyDataSetChanged()
         })
     }
-
-
 
     private fun toFund(fund: Fund) {
         val dialog = FundDialog(fund, fundAdapter)
